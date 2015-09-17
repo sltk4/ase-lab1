@@ -3,7 +3,7 @@
 <head>
   <meta t="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Angular Demo</title>
+  <title>Wrongturn</title>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js" type="application/javascript"></script>
   <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -42,7 +42,9 @@
                                   <br>
 
              <div class="col-sm-6 col-md-4 col-md-offset-1">
+                                
                 <input type="text"  class="form-control"  placeholder="Current Location" ng-model="startlocation" id="startlocation"/>
+                 
                 <input type="text"  class="form-control"  placeholder="Destination"id="endlocation" /> 
                               <div class="col-sm-6 col-md-5 col-md-offset-2">
                                   <br>
@@ -78,7 +80,7 @@
 
 <script>
     window.onload = function() {
-        document.getElementById("head").innerHTML ='Hey, '+localStorage.userName+' '; 
+        document.getElementById("head").innerHTML ='Hey, '+localStorage.userName+'!!!! '; 
         document.getElementById('loc1').style.visibility = 'hidden';
         document.getElementById('loc2').style.visibility = 'hidden';
         document.getElementById('temp1').style.visibility = 'hidden';
@@ -108,7 +110,7 @@ angular.module('GoogleDirection', [])
                 map: map
             });
         });
-     };
+     }; 
     $scope.calcRoute = function () {
             var end = document.getElementById('endlocation').value;
             var start =document.getElementById('startlocation').value;
