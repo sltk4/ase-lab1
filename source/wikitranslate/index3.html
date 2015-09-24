@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="" data-ng-app="LetsChat">
+<head> 
+  <title>Home</title> 
+  
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js" type="application/javascript"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+ </head> 
+ <body > 
+     <div class="container" ng-controller="userName"> 
+      
+     <div  id="sub_header" ng-controller="userName" class="jumbotron" > 
+     <h2 id="name" style="position:absolute;left:510px;top:90px;color:#c36666;">Welcome </h3> 
+     </div> 
+      
+     <div style="position:absolute;top:150px;left:50px;"> 
+      
+     </div> 
+         
+         <div>
+             <p>wiki</p>
+             <table id="tbl" > 
+             <tr> 
+                 <td> 
+                 search in wiki
+                 </td> 
+             <td> 
+                 <input type="text" id="keyword" /> 
+                 </td>
+                 
+         </table> 
+              <input type="submit" id="information" value="wikisearch" ng-click="calcRoute()" />
+             <br>
+<textarea rows="7" cols="50" id = 'info'>
+</textarea>         </div>
+         
+         <div id="translate" style="position:absolute;top:150px;left:600px;" > 
+             <span> 
+             <h3>Translate</h3> 
+             </span> 
+         <table id="tbl_translate" > 
+             <tr> 
+                 <td> 
+                 Enter the text 
+                 </td> 
+             <td> 
+                 <input type="text" id="txt_Source" /> 
+                 </td> 
+                 <td> 
+                 <select id="src_lang_choices"> 
+                     <option value="en" selected="true">English</option> 
+                     <option value="es">Spanish</option> 
+                     <option value="fr">French</option> 
+                     <option value="hi">Hindi</option> 
+                     </select> 
+                      
+                 </td> 
+ 
+             </tr> 
+             <tr> 
+                 <td> 
+                 Translated text 
+                 </td> 
+             <td> 
+                 <input type="text" id="txt_Dest" /> 
+                 </td> 
+                 <td> 
+                 <select id="dest_lang_choices"> 
+                     <option value="en">English</option> 
+                     <option value="es">Spanish</option> 
+                     <option value="fr">French</option> 
+                     <option value="hi" selected="true">Hindi</option> 
+                     </select> 
+                      
+                 </td> 
+             </tr> 
+             <tr> 
+             <td > 
+                 
+                 
+                 </td> 
+             </tr> 
+             </table> 
+              <input type="submit" id="btn_translate" value="Translate" onclick="convertText()" /> 
+         </div> 
+     </div> 
+     <script> 
+         
+         window.onload = function() {
+        document.getElementById("name").innerHTML ='Welcome '+localStorage.userName+' '; 
+         };
+          angular.module('LetsChat', []) 
+.controller('userName', function ($scope) { 
+      $scope.userMessage=localStorage.getItem("nickName");   
+     $scope.calcRoute = function () {
+                    var start = document.getElementById('keyword').value;
+        var url1 = "http://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&titles="+start+"&format=json&callback=?";
+        $.getJSON(url1, function(data) {
+        	 var op = JSON.stringify(data);
+        	 var ind = op.indexOf("intl");
+        	 var op1 = op.substring(ind);
+        	 var ind2 = op1.indexOf("'''");
+            document.getElementById('info').innerHTML = op1.substring(ind2,ind2+100);
+
+    	});
+    };
+     });  
+         
+         function convertText() 
+         { 
+             document.getElementById("txt_Source").value = document.getElementById('info').innerHTML ;
+          var sourceLang= document.getElementById("txt_Source").value.toString(); 
+          var sourceLangoption = document.getElementById("src_lang_choices"); 
+          sourceLangoption=sourceLangoption.options[sourceLangoption.selectedIndex].value; 
+           var destLang=document.getElementById("txt_Dest").value.toString(); 
+           var destLangOption = document.getElementById("dest_lang_choices"); 
+           destLangOption =destLangOption.options[destLangOption.selectedIndex].value; 
+             $.ajax({ 
+	url: 'http://www.frengly.com/',		 
+	data: { 
+		src: sourceLangoption, 
+		dest: destLangOption, 
+		text: sourceLang, 
+		outformat: 'json', 
+		email: "ragunandanrao@gmail.com", 
+		password: "Batman@15" 
+	},			    	    	     
+	success: function(data){		     
+			document.getElementById("txt_Dest").value=data.translation; 
+		}, 
+		error: function (errormessage) { 
+			$('#responseDiv').html(errormessage); 
+		} 
+	});	 
+          } 
+         
+         
+     </script>
+    
+     </body> 
+       
+</html> 
+
