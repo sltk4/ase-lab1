@@ -1,0 +1,20 @@
+
+<ion-view view-title="MedConnect Home" name="patient-view">
+  <ion-content class="padding">
+      <div class="bar bar-header bar-calm">
+  <h1 class="title">Search Doctors</h1>
+</div> <br> <br>
+      <div class="list list-inset">
+        
+          <h3>Choose Specialization</h3>
+          <select ng-model="mySelect">
+              
+  <option value="Cardiologist">Cardiologist</option>
+  <option value="ENT">ENT</option>
+  <option value="Dentist">Dentist</option>
+</select>
+         
+      </div>
+      <button class="button button-outline  button-positive" ng-click="view(mySelect)">View Doctors</button>
+  </ion-content>
+</ion-view>
