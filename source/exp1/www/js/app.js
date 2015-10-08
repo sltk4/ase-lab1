@@ -51,13 +51,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   })
 
     .state('view', {
-      url: '/viewDoctors',
+      url: 'viewDoctors',
      templateUrl: 'templates/viewDoctors.html',
       controller: 'viewCtrl'
        
        
   })
   
+  
+  
+
   
   .state('tab.chats', {
       url: '/chats',
@@ -82,6 +85,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       templateUrl: 'templates/login.html',
       controller: 'LoginCtrl'
   })
+  
+  .state('appointment', {
+         url:'appointment',
+         templateUrl:'templates/appointment.html',
+         controller:'confappointment'
+         })
+  
 
   .state('tab.account', {
     url: '/account',

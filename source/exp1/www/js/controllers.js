@@ -38,6 +38,20 @@ angular.module('starter.controllers', [])
     }
 })
 
+.controller('viewCtrl',function($scope, $ionicPopup, $state){
+ $scope.data = {};
+    $scope.d1= function(){
+$state.go('appointment');
+
+}    
+})
+
+
+.controller('confappointment',function($scope, $ionicPopup, $state){
+ $scope.data = {};
+    
+})
+
 
 .controller('SearchCtrl', function($scope, $ionicPopup, $state) {
      $scope.data = {};
